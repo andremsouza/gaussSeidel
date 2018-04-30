@@ -1,37 +1,30 @@
 # This is the main script file of this assignment.
 #
-# It receives user input from the terminal, and computes the solution of the
-# linear system using the Gauss-Seidel iterative method. 
+# It executes tests based on parameters received and computes the solution of
+# the linear system using the Gauss-Seidel iterative method. 
 format long
 
-while(1)
-  try
-    disp("Ax = b");
-    # Receiving the dimension of the system and validating its value
-    n = uint32(input("Digite a dimensao do sistema: "));
-    ##if(n<=0) print("ERR_INVALID_INPUT\n\n"); continue; endif;
-    
-    # Receiving the matrix A, an custom user input, or the pentadiagMatrix(n).
-    #
-    # Warning: This script doesn't check if the matrix is diagonally dominant or
-    # if the matrix is SPD.
-    A = input("Digite a matriz A (ou ENTER, para usar a pentadiagonal): ");
-    if(!numel(A))
-      A = pentadiagMatrix(n)
-    endif;
-    # Receiving vector b, and other parameters
-    b = input("Digite o vetor coluna b do sistema: ");
-    if(!numel(b))
-      b = (sum(A))'
-    endif
-    ep = abs(input("Digite valor de epsilon (ε): "));
-    itmax = uint32(input("Digite o numero maximo de iteraçoes do algoritmo: "));
-    break;
-  catch
-    disp("ERR_INVALID_INPUT\n\n");
-    continue;
-  end_try_catch;
-endwhile;
+# First test (b))
+disp("Primeiro Teste (b): ")
+n = int32(50);
+A = pentadiagMatrix(n);
+b = sum(A)';
+x = gaussSeidel(A, b, n, :, :)
 
-# Computing the solution, using the Gauss-Seidel iterative method
-x = gaussSeidel(A, b, n, ep, itmax)
+# Second test (b))
+disp("Segundo Teste (b): ")
+n = int32(100);
+A = pentadiagMatrix(n);
+b = sum(A)';
+x = gaussSeidel(A, b, n, :, :)
+
+# Third test (c))
+disp("Terceiro Teste (c): ")
+n = int32(100);
+A = pentadiagMatrix(n);
+for(i=1:n)
+  b(i) = 1/i;
+endfor
+b;
+ep = 1e-10;
+x = gaussSeidel(A, b, n, ep, :)
