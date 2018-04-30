@@ -17,16 +17,16 @@ function x = gaussSeidel(A, b, n, ep, itmax)
       x(1, i) += b(1, i) / A(i,i);
       for j = 1:(i-1)
         x(1, i) -= A(i, j) * x(1, j) / A(i, i);
-      end for
+      endfor;
       for j = (i+1):n
         x(1, i) -= A(i, j) * xo(1, j) / A(i, i);
-      end for
-    end for
+      endfor;
+    endfor;
     
-    if(norm(x-xo, inf) < ep) return;
+    if(norm(x-xo, inf) < ep) return; endif;
     xo = x;
-  endfor
+  endfor;
   x = "ERR_EXCEEDED_ITERATION";
-endfunction
+endfunction;
 
 ## Needs testing
