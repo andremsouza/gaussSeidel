@@ -15,13 +15,17 @@ while(1)
     #
     # Warning: This script doesn't check if the matrix is diagonally dominant or
     # if the matrix is SPD.
-    A = input("Digite a matriz A(ou ENTER, para usar a pentadiagonal): ");
-    if(!numel(A)) A = pentadiagMatrix(n); endif;
-    
+    A = input("Digite a matriz A (ou ENTER, para usar a pentadiagonal): ");
+    if(!numel(A))
+      A = pentadiagMatrix(n)
+    endif;
     # Receiving vector b, and other parameters
-    b = input("Digite o vetor coluna b do sistema: ")
-    ep = input("Digite valor de epsilon (ε): ")
-    itmax = uint32(input("Digite o numero maximo de iteraçoes do algoritmo: "))
+    b = input("Digite o vetor coluna b do sistema: ");
+    if(!numel(b))
+      b = (sum(A))'
+    endif
+    ep = abs(input("Digite valor de epsilon (ε): "));
+    itmax = uint32(input("Digite o numero maximo de iteraçoes do algoritmo: "));
     break;
   catch
     disp("ERR_INVALID_INPUT\n\n");
