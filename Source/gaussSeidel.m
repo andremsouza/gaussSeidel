@@ -14,15 +14,15 @@ function x = gaussSeidel(A, b, n, ep, itmax)
   x = xo = zeros(n, 1);
   for k = 1:itmax
     for i = 1:n
-      x(1, i) += b(1, i) / A(i,i);
-      for j = 1:(i-1)
+      x(1, i) += b(1, i) / A(i,i); # b_i term
+      for j = 1:(i-1) # First summation
         x(1, i) -= A(i, j) * x(1, j) / A(i, i);
       endfor;
-      for j = (i+1):n
+      for j = (i+1):n # Second summation
         x(1, i) -= A(i, j) * xo(1, j) / A(i, i);
       endfor;
     endfor;
-    
+    # If we have acceptable results, based on the ep variable
     if(norm(x-xo, inf) < ep) return; endif;
     xo = x;
   endfor;

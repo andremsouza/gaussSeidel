@@ -6,7 +6,7 @@ format long
 
 while(1)
   try
-    print("Ax = b");
+    disp("Ax = b");
     # Receiving the dimension of the system and validating its value
     n = uint32(input("Digite a dimensao do sistema: "));
     ##if(n<=0) print("ERR_INVALID_INPUT\n\n"); continue; endif;
@@ -24,7 +24,7 @@ while(1)
     itmax = uint32(input("Digite o numero maximo de iteraçoes do algoritmo: "))
     break;
   catch
-    print("ERR_INVALID_INPUT\n\n");
+    disp("ERR_INVALID_INPUT\n\n");
     continue;
   end_try_catch;
 endwhile;
